@@ -1,4 +1,5 @@
 ﻿using ForecastAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ForecastAPI.Controllers
@@ -13,6 +14,7 @@ namespace ForecastAPI.Controllers
     /// Initializes a new instance of the <see cref="ForecastsController"/> class.
     /// </remarks>
     /// <param name="forecastService">Service for fetching weather forecasts.</param>
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ForecastsController(IForecastService forecastService) : ControllerBase
