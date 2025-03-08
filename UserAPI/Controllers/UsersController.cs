@@ -48,7 +48,7 @@ namespace UserAPI.Controllers
                 if (id.Equals(Guid.Empty))
                     return NotFound($"User ID [{id}] was not provided.");
 
-                return Ok(user);
+                return Ok(new { Id = user!.UserId, user.Username, user.Email });
             }
             catch (KeyNotFoundException ex)
             {
@@ -86,17 +86,17 @@ namespace UserAPI.Controllers
             return Ok(new
             {
                 Token = token,
-                ExpiresIn = _jwtSettings.ExpiresInMinutes,
-                User = new { user.UserId, user.Username }
+                ExpiresIn = _jwtSettings.ExpiresInDays,
+                User = new { Id = user.UserId, user.Username, user.Email }
             });
         }
 
         /// <summary>
-        /// Registers a new user and stores their credentials securely.
+        /// Registers a new user and authenticates him storing their JWT credentials securely.
         /// </summary>
         /// <param name="request">The registration request containing user details.</param>
         /// <returns>
-        /// - <c>201 Created</c>: If registration is successful.<br/>
+        /// - <c>201 Created</c>: If registration with JWT authentication is successful.<br/>
         /// - <c>400 Bad Request</c>: If the request data is invalid.<br/>
         /// - <c>500 Internal Server Error</c>: If an unexpected error occurs.
         /// </returns>
@@ -111,8 +111,14 @@ namespace UserAPI.Controllers
 
             try
             {
-                await _userService.RegisterAsync(request);
-                return Created(nameof(Register), request);
+                var user = await _userService.RegisterAsync(request);
+                var token = GenerateJwtToken(user);
+                return Created(nameof(Register), new
+                {
+                    Token = token,
+                    ExpiresIn = _jwtSettings.ExpiresInDays,
+                    User = new { Id = user.UserId, user.Username, user.Email }
+                });
             }
             catch (ArgumentNullException ex)
             {
@@ -152,7 +158,7 @@ namespace UserAPI.Controllers
                 issuer: _jwtSettings.Issuer,
                 audience: _jwtSettings.Audience,
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(_jwtSettings.ExpiresInMinutes),
+                expires: DateTime.UtcNow.AddDays(_jwtSettings.ExpiresInDays),
                 signingCredentials: creds
             );
 
