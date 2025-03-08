@@ -1,11 +1,9 @@
-const BASE_URL = (port: number) => `https://localhost:${port}/api`
-
-const USER_API_BASE_URL = BASE_URL(7289)
+const GATEWAY = `https://localhost:7241/gateway`
 
 export const API_ROUTES = {
 	AUTH: {
-		LOGIN: `${USER_API_BASE_URL}/users/login`,
-		REGISTER: `${USER_API_BASE_URL}/users/register`,
-		GET_BY_ID: (id: string) => `${USER_API_BASE_URL}/users/${id}`,
+		GET_BY_ID: (id: string) => `${GATEWAY}/auth/${id}`,
+		LOGIN: `${GATEWAY}/auth/login`,
+		REGISTER: `${GATEWAY}/auth/register`,
 	},
 }
