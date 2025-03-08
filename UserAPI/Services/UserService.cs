@@ -34,7 +34,7 @@ namespace UserAPI.Services
             return await Task.FromResult(IsRightPassword(user, request.Password) ? user : null);
         }
 
-        public async Task RegisterAsync(Register request)
+        public async Task<User> RegisterAsync(Register request)
         {
             if (request == null)
             {
@@ -57,7 +57,9 @@ namespace UserAPI.Services
             {
                 await _repository.CreateAsync(user);
                 _message = "Successful user registration in UserAPI.Services.AuthService.RegisterAsync";
-                _logger.LogError(_message);
+                _logger.LogInformation(_message);
+
+                return user;
             }
             catch (Exception ex)
             {

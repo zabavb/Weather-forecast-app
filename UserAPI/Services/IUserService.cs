@@ -7,6 +7,6 @@ namespace UserAPI.Services
     {
         Task<User?> GetByIdAsync(Guid id);
         Task<User?> AuthenticateAsync(Login request);
-        Task RegisterAsync(Register entity);
+        Task<User> RegisterAsync(Register entity);
     }
 }
