@@ -1,5 +1,5 @@
-import ProfileContainer from "../../containers/main/ProfileContainer"
+import ProfileContainer from '../../containers/main/ProfileContainer';
 
-const ProfilePage: React.FC = () => <ProfileContainer />
+const ProfilePage: React.FC = () => <ProfileContainer />;
 
-export default ProfilePage
+export default ProfilePage;

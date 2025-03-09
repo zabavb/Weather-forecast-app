@@ -1,5 +1,5 @@
-import LoginContainer from "../../containers/auth/LoginContainer";
+import LoginContainer from '../../containers/auth/LoginContainer';
 
-const LoginPage = () => <LoginContainer />
+const LoginPage = () => <LoginContainer />;
 
-export default LoginPage
+export default LoginPage;

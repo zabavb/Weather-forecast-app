@@ -1,14 +1,14 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ForbiddenPage: React.FC = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <>
       <h1>403: Access Denied</h1>
-      <button onClick={() => navigate("/login")}>Login</button>
+      <button onClick={() => navigate('/login')}>Login</button>
     </>
-  )
-}
+  );
+};
 
 export default ForbiddenPage;

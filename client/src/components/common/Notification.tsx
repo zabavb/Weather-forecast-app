@@ -1,11 +1,14 @@
-import type { Notification } from "../../types"
+import type { Notification } from '../../types';
 
 interface NotificationProps {
-  notifications?: Notification[]
-  onRemoveNotification: (id: string) => void
+  notifications?: Notification[];
+  onRemoveNotification: (id: string) => void;
 }
 
-const Notification: React.FC<NotificationProps> = ({ notifications = [], onRemoveNotification }) => {
+const Notification: React.FC<NotificationProps> = ({
+  notifications = [],
+  onRemoveNotification,
+}) => {
   return (
     <div>
       {notifications
@@ -13,11 +16,13 @@ const Notification: React.FC<NotificationProps> = ({ notifications = [], onRemov
         .map((notification) => (
           <div key={notification.id}>
             {notification.message}
-            <button onClick={() => onRemoveNotification(notification.id)}>X</button>
+            <button onClick={() => onRemoveNotification(notification.id)}>
+              X
+            </button>
           </div>
         ))}
     </div>
-  )
-}
+  );
+};
 
-export default Notification
+export default Notification;

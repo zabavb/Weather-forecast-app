@@ -1,13 +1,13 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from 'react-router-dom';
 
 const NotFoundPage: React.FC = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <>
       <h1>404 Page Not Found</h1>
-      <button onClick={() => navigate("/")}>Go to main page</button>
+      <button onClick={() => navigate('/')}>Go to main page</button>
     </>
-  )
-}
+  );
+};
 
-export default NotFoundPage
+export default NotFoundPage;
