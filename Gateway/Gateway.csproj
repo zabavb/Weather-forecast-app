@@ -7,16 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="ocelot.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="ocelot.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Ocelot" Version="23.4.3" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
 </Project>
