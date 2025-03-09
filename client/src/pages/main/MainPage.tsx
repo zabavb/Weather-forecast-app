@@ -1,5 +1,5 @@
-import MainContainer from "../../containers/main/MainContainer";
+import MainContainer from '../../containers/main/MainContainer';
 
-const MainPage: React.FC = () => <MainContainer />
+const MainPage: React.FC = () => <MainContainer />;
 
-export default MainPage
+export default MainPage;
