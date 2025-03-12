@@ -1,18 +1,13 @@
 import { createContext, useContext, useState } from 'react';
 import { loginService, registerService } from '../../services/authService';
-import {
-  Login,
-  Register,
-  NotificationData,
-  User,
-  JwtResponse,
-} from '../../types';
+import { NotificationData, User, JwtResponse } from '../../types';
+import { LoginFormData, RegisterFormData } from '../../utils';
 
 interface AuthContextProps {
   user: User | null;
   token: string | null;
-  login: (data: Login) => Promise<NotificationData>;
-  register: (data: Register) => Promise<NotificationData>;
+  login: (data: LoginFormData) => Promise<NotificationData>;
+  register: (data: RegisterFormData) => Promise<NotificationData>;
   logout: () => void;
 }
 
@@ -24,7 +19,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     localStorage.getItem('token'),
   );
 
-  const login = async (userData: Login): Promise<NotificationData> => {
+  const login = async (userData: LoginFormData): Promise<NotificationData> => {
     try {
       const data = await loginService(userData);
       authenticate(data);
@@ -38,7 +33,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const register = async (userData: Register): Promise<NotificationData> => {
+  const register = async (
+    userData: RegisterFormData,
+  ): Promise<NotificationData> => {
     try {
       const data = await registerService(userData);
       authenticate(data);
