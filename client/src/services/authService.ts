@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { JwtResponse, Login, Register } from '../types';
+import { JwtResponse } from '../types';
 import { LOGIN, REGISTER } from '../api';
+import { LoginFormData, RegisterFormData } from '../utils';
 
 /**
  * Generic function to handle API requests with error handling.
@@ -24,11 +25,12 @@ const apiCall = async (
 /**
  * Logs in the user and stores the token.
  */
-export const loginService = async (data: Login): Promise<JwtResponse> =>
+export const loginService = async (data: LoginFormData): Promise<JwtResponse> =>
   await apiCall('post', LOGIN, data);
 
 /**
  * Registers a new user.
  */
-export const registerService = async (data: Register): Promise<JwtResponse> =>
-  await apiCall('post', REGISTER, data);
+export const registerService = async (
+  data: RegisterFormData,
+): Promise<JwtResponse> => await apiCall('post', REGISTER, data);
