@@ -1,15 +1,14 @@
 import axios from 'axios';
 import { WEATHER } from '../api';
-import { Weather } from '../types';
+import { Weather, WeatherRequest } from '../types';
 
 /**
  * Retrievers weather forecast data based on provided parameters
  */
 export const weatherService = async (
-  location: string,
-  days: number,
+  request: WeatherRequest,
 ): Promise<Weather> => {
-  const url = WEATHER(location, days);
+  const url = WEATHER(request.location, request.days);
 
   try {
     const response = await axios.get<Weather>(url);

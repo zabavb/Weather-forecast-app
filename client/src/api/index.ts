@@ -8,4 +8,5 @@ export const GET_USER_BY_ID = API_ROUTES.AUTH.GET_BY_ID;
 
 // ================= WEATHER =================
 
-export const WEATHER = API_ROUTES.WEATHER;
+export const WEATHER = (location: string = 'London', days: number = 14) =>
+  API_ROUTES.WEATHER(location, days);
