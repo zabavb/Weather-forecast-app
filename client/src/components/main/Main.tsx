@@ -1,22 +1,23 @@
-import { Dispatch, SetStateAction } from 'react';
-import { Weather } from '../../types';
+import { Weather, WeatherRequest } from '../../types';
 
 interface MainProps {
   isAuthenticated: boolean;
   onNavigate: (path: string) => void;
-  onChangeLocation: Dispatch<SetStateAction<string>>;
   weather: Weather | null;
-  onSearch: () => Promise<void>;
+  days: number[];
   defaultLocation: string;
+  defaultDays: number;
+  onSearch: (request: WeatherRequest) => Promise<void>;
 }
 
 const Main: React.FC<MainProps> = ({
   isAuthenticated,
   onNavigate,
-  onChangeLocation,
   weather,
-  onSearch,
+  days,
   defaultLocation,
+  defaultDays,
+  onSearch,
 }) => {
   return (
     <>
@@ -29,13 +30,37 @@ const Main: React.FC<MainProps> = ({
       <h1>Main Page</h1>
 
       <div>
-        <input
-          type='text'
-          onChange={(e) => onChangeLocation(e.target.value)}
-          defaultValue={defaultLocation}
-          placeholder='Location...'
-        />
-        <button onClick={onSearch}>Search</button>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const formData = new FormData(e.currentTarget);
+            const location = formData.get('location') as string;
+            const days = Number(formData.get('days'));
+            onSearch({ location, days });
+          }}
+        >
+          <input
+            type='text'
+            name='location'
+            defaultValue={defaultLocation}
+            placeholder='Location...'
+          />
+          <p>
+            <span>For days:</span>
+            {days.map((number) => (
+              <label key={number}>
+                <input
+                  type='radio'
+                  name='days'
+                  defaultChecked={defaultDays === number}
+                  value={number}
+                />
+                {number}
+              </label>
+            ))}
+          </p>
+          <button type='submit'>Search</button>
+        </form>
       </div>
 
       {weather ? (

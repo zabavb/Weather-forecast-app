@@ -7,6 +7,7 @@ export type { JwtResponse } from './auth/JwtResponse';
 // Weather types
 
 export type { Weather } from './weather/Weather';
+export type { WeatherRequest } from './weather/weatherRequest';
 
 // Common types
 
