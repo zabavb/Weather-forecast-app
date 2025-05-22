@@ -145,7 +145,7 @@
 <p>This project consumes a remote third-party API for weather data:</p>
 <ul>
   <li>All forecast data is retrieved from the 
-    <a href="www.weatherapi.com">www.weatherapi.com</a>
+    <a href="https://www.weatherapi.com">www.weatherapi.com</a>
     remote server</li>
   <li>Data is filtered and cached appropriately to reduce unnecessary API calls</li>
 </ul>
@@ -160,5 +160,5 @@
 </p>
 <h2>🔗 Repository</h2>
 <p> GitHub: 
-  <a href="github.com/zabavb/weather-forecast-app">github.com/zabavb/weather-forecast-app</a>
+  <a href="https://github.com/zabavb/weather-forecast-app">github.com/zabavb/weather-forecast-app</a>
 </p>
