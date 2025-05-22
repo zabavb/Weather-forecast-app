@@ -1,6 +1,7 @@
 // Auth types
 
 export type { User } from './auth/User';
+export type { RegisterRequest } from './auth/RegisterRequest';
 export type { JwtResponse } from './auth/JwtResponse';
 
 // Weather types

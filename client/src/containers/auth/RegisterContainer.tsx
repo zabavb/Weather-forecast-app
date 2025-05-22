@@ -7,6 +7,7 @@ import { NotificationData } from '../../types';
 import Register from '../../components/auth/Register';
 import { useAuth } from '../../state/context';
 import { RegisterFormData } from '../../utils/authValidationSchems';
+import { fromRegisterFormToRegisterRequest } from '../../api/adapters/userAdapter';
 
 const RegisterContainer: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -14,7 +15,8 @@ const RegisterContainer: React.FC = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (userData: RegisterFormData) => {
-    const data = await register(userData);
+    const request = fromRegisterFormToRegisterRequest(userData);
+    const data = await register(request);
     if (data.type === 'success') handleSuccess(data);
     else handleError(data);
   };

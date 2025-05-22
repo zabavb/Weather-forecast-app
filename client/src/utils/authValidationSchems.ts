@@ -25,7 +25,7 @@ export const registerSchema = z
       .string()
       .min(4, 'Username must be at least 4 characters.')
       .max(20, 'Username too long.'),
-    email: z.string().email('Invalid email.').optional().or(z.literal('')),
+    email: z.string().email('Invalid email.'),
     password: z
       .string()
       .min(6, 'Password must be at least 6 characters.')
@@ -35,12 +35,9 @@ export const registerSchema = z
       }),
     passwordConfirm: z.string(),
   })
-  .refine((data) => data.username !== '' || data.email !== '', {
-    message: 'Either Username or Email must be provided.',
-    path: ['username'],
-  })
   .refine((data) => data.password === data.passwordConfirm, {
     message: 'Passwords do not match.',
+    path: ['passwordConfirm'],
   });
 
 export type RegisterFormData = z.infer<typeof registerSchema>;
