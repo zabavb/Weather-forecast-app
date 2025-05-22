@@ -15,9 +15,9 @@ namespace ForecastAPI.Services
 
         public async Task<ForecastResponse> GetForecastAsync(string location, int days)
         {
-            if (days < 1 || days > 14)
+            if (days < 1 || days > 3)
             {
-                _message = "Invalid number of days. Please provide a number between 1 and 14.";
+                _message = "Invalid number of days. Please provide a number between 1 and 3.";
                 _logger.LogError(_message);
                 throw new Exception(_message);
             }
